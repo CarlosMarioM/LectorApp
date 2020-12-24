@@ -25,31 +25,40 @@ namespace QRLectorApp
             InitializeComponent();
         }
 
-         public  void ZXingScannerView_OnScanResult(ZXing.Result result)
-        {
+       
+
+           void ZXingScannerView_OnScanResult(ZXing.Result result)
+        { 
             Device.BeginInvokeOnMainThread (async () =>
             {
-                var respones = await _services.SelectAsync(result.Text);
+                 _services.SelectAsync(result.Text);
                 string Color = Xamarin.Forms.Application.Current.Properties["color"].ToString();
-                if (Color == "2")
-                {
+                string Status = Xamarin.Forms.Application.Current.Properties["status"].ToString();
+                if (Status == "2")                {
                     
                     var color = Xamarin.Forms.Application.Current.Properties["color"];
-                    scanResult.Text = result.Text + " " + result.BarcodeFormat.ToString();
-                    await DisplayAlert("Notificación", "El número de registro " + result.Text + " ya se encuentra registrado ", "Aceptar");
+                    scanResult.Text = result.Text + " " + color.ToString();
+                    
+                    
+                    await DisplayAlert("Notificación", "El número de registro " + result.Text + " ya se encuentra registrado", "Aceptar");
+                  
                 }
                 else 
                 {
                     
                     var color = Xamarin.Forms.Application.Current.Properties["color"];
-                    scanResult.Text = result.Text + " " + result.BarcodeFormat.ToString();
-                    await DisplayAlert("Notificación", "El número de registro es " + result.Text + " " + color.ToString() + "", "Entendido");
+                    scanResult.Text = result.Text + " " + color.ToString();
 
+                    await DisplayAlert("Notificación", "El número de registro es " + result.Text + " " + color.ToString() + "", "Entendido");
+                   
                 }
 
 
-
+                scanResult.Text = "";
+               
             });
+            
+
         }
     }
 }

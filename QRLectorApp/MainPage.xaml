@@ -7,10 +7,10 @@
              x:Class="QRLectorApp.MainPage"
              xmlns:zxing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms">
 
-    <StackLayout>
+    <StackLayout Padding="30, 60, 20, 60">
         <!-- Place new controls here -->
         <Label x:Name="scanResult"></Label>
-        <zxing:ZXingScannerView IsScanning="True" OnScanResult="ZXingScannerView_OnScanResult"></zxing:ZXingScannerView>
+        <zxing:ZXingScannerView IsScanning="True" x:Name="scanner" OnScanResult="ZXingScannerView_OnScanResult"></zxing:ZXingScannerView>
     </StackLayout>
 
 </ContentPage>
